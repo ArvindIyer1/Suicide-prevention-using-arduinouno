@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suicide Prevention System - India</title>
+    <style>
+        /* Modern Color Palette and Styling */
+        :root {
+            --primary: #3498db;
+            --primary-dark: #2980b9;
+            --secondary: #f39c12;
+            --text: #2c3e50;
+            --light-bg: #ecf0f1;
+            --white: #ffffff;
+            --alert: #e74c3c;
+            --success: #27ae60;
+            --border-radius: 8px;
+            --shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text);
+            background-color: var(--light-bg);
+            line-height: 1.6;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #3498db, #8e44ad);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 1rem;
+            border-bottom: 5px solid var(--secondary);
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .weight-display {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(to right, #f5f7fa, #c3cfe2);
+            border-radius: var(--border-radius);
+            border-left: 5px solid var(--primary);
+        }
+        
+        .weight-label {
+            font-size: 1.2rem;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+        
+        .weight-value {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary-dark);
+        }
+        
+        .alert {
+            background-color: var(--alert);
+            color: var(--white);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin: 2rem 0;
+            display: none;
+            animation: blink 1s infinite;
+            border-left: 5px solid #c0392b;
+            text-align: center;
+        }
+        
+        .alert h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .alert p {
+            font-size: 1.2rem;
+        }
+        
+        .two-column {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .column {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .resources h2, .about h2 {
+            font-size: 1.8rem;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--secondary);
+        }
+        
+        .resource-item {
+            background-color: rgba(236, 240, 241, 0.5);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: var(--border-radius);
+            border-left: 3px solid var(--primary);
+        }
+        
+        .resource-item strong {
+            font-size: 1.1rem;
+            color: var(--primary-dark);
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+        
+        .resource-item p {
+            margin: 0.5rem 0;
+        }
+        
+        .resource-item .contact {
+            display: flex;
+            align-items: center;
+            margin-top: 0.5rem;
+        }
+        
+        .contact-icon {
+            width: 16px;
+            height: 16px;
+            margin-right: 0.5rem;
+            opacity: 0.7;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--text);
+            color: var(--white);
+            margin-top: 3rem;
+        }
+        
+        @keyframes blink {
+            0% {opacity: 1;}
+            50% {opacity: 0.8;}
+            100% {opacity: 1;}
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .two-column {
+                flex-direction: column;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Suicide Prevention Monitoring System</h1>
+        <p>Saving lives through early detection and immediate response</p>
+    </div>
+    
+    <div class="container">
+        <div class="card">
+            <div class="weight-display">
+                <div class="weight-label">Current Weight Detection</div>
+                <div class="weight-value" id="weight">0.000 kg</div>
+            </div>
+            
+            <div class="alert" id="alert">
+                <h2>⚠️ ALERT! Weight Detected on Sensor</h2>
+                <p>Emergency protocols activated. Help is being dispatched immediately.</p>
+            </div>
+        </div>
+        
+        <div class="two-column">
+            <div class="column">
+                <div class="card resources">
+                    <h2>Crisis Resources in India</h2>
+                    
+                    <div class="resource-item">
+                        <strong>AASRA</strong>
+                        <p>24x7 Helpline for people facing emotional distress and suicidal feelings</p>
+                        <div class="contact">
+                            <span class="contact-icon">📞</span> 91-9820466726
+                        </div>
+                        <div class="contact">
+                            <span class="contact-icon">✉️</span> aasrahelpline@yahoo.com
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <strong>Roshni Trust</strong>
+                        <p>Confidential helpline for mental health support and suicide prevention</p>
+                        <div class="contact">
+                            <span class="contact-icon">📞</span> 040-66202000, 040-66202001
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <strong>SNEHA Foundation</strong>
+                        <p>Suicide prevention and crisis support organization</p>
+                        <div class="contact">
+                            <span class="contact-icon">📞</span> 91-44-24640050
+                        </div>
+                        <div class="contact">
+                            <span class="contact-icon">✉️</span> help@snehaindia.org
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <strong>iCall</strong>
+                        <p>Psychosocial helpline by TISS</p>
+                        <div class="contact">
+                            <span class="contact-icon">📞</span> 91-22-25521111
+                        </div>
+                        <div class="contact">
+                            <span class="contact-icon">✉️</span> icall@tiss.edu
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="column">
+                <div class="card about">
+                    <h2>About This System</h2>
+                    <p>This monitoring system uses Arduino technology with weight sensors to detect potential suicide attempts. When unusual weight is detected on the sensor (such as when someone steps onto a dangerous area), the system immediately:</p>
+                    <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                        <li>Activates local alarms</li>
+                        <li>Sends alerts to designated emergency contacts</li>
+                        <li>Provides immediate location information to responders</li>
+                    </ul>
+                    
+                    <h3 style="margin-top: 1.5rem; color: var(--primary-dark);">Warning Signs</h3>
+                    <p style="margin-top: 0.5rem;">Be aware of these common warning signs of suicidal thoughts:</p>
+                    <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                        <li>Talking about wanting to die or kill oneself</li>
+                        <li>Talking about feeling hopeless or having no reason to live</li>
+                        <li>Increasing alcohol or drug use</li>
+                        <li>Withdrawing from friends, family, and society</li>
+                        <li>Displaying extreme mood swings</li>
+                        <li>Giving away prized possessions</li>
+                    </ul>
+                    
+                    <p style="margin-top: 1rem; font-weight: bold; color: var(--alert);">If you notice these signs in someone, reach out and connect them with help immediately.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Suicide Prevention Monitoring System © 2025</p>
+        <p style="font-size: 0.9rem; margin-top: 0.5rem;">Remember: You are not alone. Help is always available.</p>
+    </footer>
+
+    <script>
+        function updateData() {
+            // In a real implementation, this would fetch data from your Arduino
+            // For demo purposes, we're generating random values
+            fetch('/data')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('weight').textContent = data.weight.toFixed(3) + ' kg';
+                    
+                    if (data.alert) {
+                        document.getElementById('alert').style.display = 'block';
+                    } else {
+                        document.getElementById('alert').style.display = 'none';
+                    }
+                })
+                .catch(error => {
+                    // If server is not running, use demo data
+                    console.log("Using demo data");
+                    const weight = Math.random() * 2;
+                    document.getElementById('weight').textContent = weight.toFixed(3) + ' kg';
+                    
+                    if (weight > 0.5) {
+                        document.getElementById('alert').style.display = 'block';
+                    } else {
+                        document.getElementById('alert').style.display = 'none';
+                    }
+                });
+        }
+        
+        // Update every second
+        setInterval(updateData, 1000);
+        
+        // Initial update
+        updateData();
+    </script>
+</body>
+</html>
